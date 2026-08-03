@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema PetWeb</title>
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══ -->
+  <nav class="petweb-navbar">
+    <div class="navbar-inner">
+
+      <a href="/" class="navbar-brand">
+        <img width="130" height="80" alt="Logo" src="https://i.pinimg.com/1200x/f8/f2/8a/f8f28a7e88a10a81cc3120822eaa8425.jpg">
+        PetWeb
+      </a>
+
+      <button class="navbar-toggle"
+              onclick="document.querySelector('.navbar-links').classList.toggle('open')"
+              aria-label="Menu">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+
+      <ul class="navbar-links">
+        <li><a href="/" class="active">Início</a></li>
+        <li><a href="/clientes/listar">Clientes</a></li>
+        <li><a href="/animais/listar">Animais</a></li>
+        <li><a href="/veterinarios/listar">Veterinários</a></li>
+        <li><a href="/consultas/listar">Consultas</a></li>
+        <li><a href="/logout" class="navbar-logout">Sair</a></li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <!-- ══ HEADER ══ -->
+  <header class="petweb-header">
+    <div class="header-inner">
+
+      <!-- LOGO HEADER: troque por <img src="logo.png" class="header-logo" alt="Logo"> -->
+      <div class="header-logo">
+        <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+          <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+          <circle cx="9"  cy="10" r="1.2" fill="currentColor" stroke="none"/>
+          <circle cx="15" cy="10" r="1.2" fill="currentColor" stroke="none"/>
+        </svg>
+        Inserir logo
+      </div>
+
+      <div class="header-text">
+        <h1>Bem-vindo ao sistema PetWeb</h1>
+        <p>Gestão completa para clínicas veterinárias</p>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ══ CONTEÚDO ══ -->
+  <main class="petweb-main">
+
+    <!-- HERO: info + imagem -->
+    <section class="hero-section">
+
+      <div class="hero-info">
+        <span class="hero-badge">✦ Sistema completo</span>
+        <h2>Cuidando dos pets com tecnologia e carinho</h2>
+        <p>
+          O PetWeb reúne todas as ferramentas que sua clínica precisa em um só lugar:
+          cadastro de clientes e animais, controle de consultas e gestão de veterinários —
+          tudo de forma simples e rápida.
+        </p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">360°</span>
+            <span class="stat-label">Gestão</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">4</span>
+            <span class="stat-label">Módulos</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Online</span>
+          </div>
+        </div>
+        <a href="/consultas/listar" class="hero-cta">
+          Ver consultas
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- IMAGEM HERO: troque o div por <img src="sua-imagem.jpg" alt=""> e remova a classe hero-img-placeholder -->
+      <div class="hero-image-wrap">
+        <div class="hero-img-placeholder">
+          <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="3"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          Inserir imagem de destaque
+        </div>
+      </div>
+
+    </section>
+
+    <!-- MÓDULOS -->
+    <p class="section-title">Módulos do sistema</p>
+    <div class="nav-grid">
+
+      <a href="/clientes/listar" class="nav-card">
+        <div class="card-img-area clientes">
+          <!-- Troque por: <img src="icone-clientes.png" alt="Clientes"> -->
+          <div class="card-img-placeholder">Inserir imagem</div>
+        </div>
+        <span class="card-label">Clientes</span>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a href="/animais/listar" class="nav-card">
+        <div class="card-img-area animais">
+          <div class="card-img-placeholder">Inserir imagem</div>
+        </div>
+        <span class="card-label">Animais</span>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a href="/veterinarios/listar" class="nav-card">
+        <div class="card-img-area vets">
+          <div class="card-img-placeholder">Inserir imagem</div>
+        </div>
+        <span class="card-label">Veterinários</span>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <a href="/consultas/listar" class="nav-card">
+        <div class="card-img-area consultas">
+          <div class="card-img-placeholder">Inserir imagem</div>
+        </div>
+        <span class="card-label">Consultas</span>
+        <span class="card-arrow">→</span>
+      </a>
+
+    </div>
+
+    <!-- FEATURES -->
+    <p class="section-title" style="margin-top:2.5rem">Por que usar o PetWeb?</p>
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon-area f1">
+          <!-- Troque por: <img src="icone1.png" alt=""> -->
+          <div class="feat-img-placeholder">Ícone</div>
+        </div>
+        <h3>Consultas em Casa</h3>
+        <p>Atendimento veterinário no conforto do lar, sem estresse para o seu pet.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-area f2">
+          <div class="feat-img-placeholder">Ícone</div>
+        </div>
+        <h3>Histórico Completo</h3>
+        <p>Fichas clínicas, vacinas e tratamentos organizados em um só lugar.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-area f3">
+          <div class="feat-img-placeholder">Ícone</div>
+        </div>
+        <h3>Agendamento Fácil</h3>
+        <p>Marque visitas e consultas com poucos cliques, a qualquer hora.</p>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="petweb-footer">
+    © 2026 PetWeb · Sistema de gestão veterinária
+  </footer>
+
+</body>
+</html> 

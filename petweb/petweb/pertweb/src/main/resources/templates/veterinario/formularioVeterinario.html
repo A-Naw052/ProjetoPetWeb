@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Veterinarios</title>
+    <link rel="stylesheet" href="/css/formulario.css">
+</head>
+<body>
+    <nav class="petweb-navbar">
+        <div class="navbar-inner">
+            <a href="/" class="navbar-brand">
+            <img width="130" height="80" alt="Logo" src="https://i.pinimg.com/1200x/f8/f2/8a/f8f28a7e88a10a81cc3120822eaa8425.jpg">
+            PetWeb
+            </a>
+            <button class="navbar-toggle" onclick="document.querySelector('.navbar-links').classList.toggle('open')" aria-label="Menu">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M3 6h18M3 12h18M3 18h18"/>
+            </svg>
+            </button>
+            <ul class="navbar-links">
+            <li><a href="/">Início</a></li>
+            <li><a href="/clientes/listar">Clientes</a></li>
+            <li><a href="/animais/listar">Animais</a></li>
+            <li><a href="/veterinarios/listar">Veterinários</a></li>
+            <li><a href="/consultas/listar">Consultas</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="page-header-inner">
+          <a href="/" class="btn-back" title="Voltar">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path d="M19 12H5M12 5l-7 7 7 7"/>
+            </svg>
+          </a>
+          <div class="page-header-text">
+            <h1>Cadastro de Veterinario</h1>
+            <p>Crie um novo acesso ao sistema PetWeb</p>
+          </div>
+        </div>
+    </header>
+
+    <div class="form-wrapper">
+        <div class="form-card">
+          <form th:action="@{/veterinarios/salvar}" method="post" th:object="${veterinario}">
+            <input type="hidden" th:field="*{idVeterinario}">
+    
+            <p class="form-section">Dados Pessoais</p>
+    
+            <div class="form-group">
+              <label for="nomeVeterinario">Nome Completo *</label>
+              <input type="text" id="nomeVeterinario" th:field="*{nomeVeterinario}" placeholder="Ex: Sara Filha">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cpfVeterinario">CPF *</label>
+                <input type="text" id="cpfVeterinario" th:field="*{cpfVeterinario}" placeholder="000.000.000-00">
+            </div>
+
+            <div class="form-group">
+                <label for="telefoneVeterinario">Telefone</label>
+                <input type="tel" id="telefoneVeterinario" th:field="*{telefoneVeterinario}" placeholder="(00) 90000-0000">
+              </div>
+            </div>
+    
+            <div class="form-group">
+              <label for="crmvVeterinario">E-CRMV *</label>
+              <input type="text" id="crmvVeterinario" th:field="*{crmvVeterinario}" placeholder="CRMV-SP 12345">
+            </div>
+
+            <div class="form-group">
+              <label for="especialidadeVeterinario">Especialidade *</label>
+              <input type="text" id="especialidadeVeterinario" th:field="*{especialidadeVeterinario}" placeholder="Cirurgião">
+            </div>
+    
+            <div class="form-actions">
+              <a href="/" class="btn btn-secondary">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path d="M19 12H5M12 5l-7 7 7 7"/>
+                </svg>
+                Cancelar
+              </a>
+              <button type="submit" class="btn btn-primary">
+                <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path d="M5 13l4 4L19 7"/>
+                </svg>
+                Salvar Cadastro
+              </button>
+            </div>
+    
+          </form>
+        </div>
+      </div>
+
+
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>

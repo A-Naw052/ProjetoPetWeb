@@ -1,0 +1,399 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;500;600;700&display=swap');
+
+/* ════════════════════════════════════════
+   PETWEB — formulario.css
+   CSS universal para todos os formulários.
+   Cole este link em qualquer página de form:
+   <link rel="stylesheet" href="/css/formulario.css">
+════════════════════════════════════════ */
+
+:root {
+  --verde-claro:  #b8d98d;
+  --verde-medio:  #8fbd5a;
+  --verde-escuro: #5e8f30;
+  --verde-nav:    #6fa832;
+  --marrom:       #7b4f2e;
+  --marrom-claro: #c9956a;
+  --marrom-palha: #f5ede0;
+  --fundo:        #f7f4ee;
+  --branco:       #ffffff;
+  --texto:        #3a2e22;
+  --texto-suave:  #7a6555;
+  --borda:        #ddd3c5;
+  --erro:         #c0392b;
+  --sombra:       rgba(75, 50, 20, 0.11);
+  --sombra-foco:  rgba(143, 189, 90, 0.28);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--fundo);
+  color: var(--texto);
+  min-height: 100vh;
+  padding-bottom: 4rem;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 8% 92%, rgba(184,217,141,.14) 0%, transparent 50%),
+    radial-gradient(circle at 92% 8%,  rgba(123,79,46,.07)  0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ════════════════════════════
+   NAVBAR
+════════════════════════════ */
+.petweb-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid var(--verde-claro);
+  box-shadow: 0 2px 16px rgba(94,143,48,.10);
+}
+.navbar-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .6rem 1.5rem;
+  gap: 1rem;
+}
+.navbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--verde-escuro);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  white-space: nowrap;
+}
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  list-style: none;
+}
+.navbar-links a {
+  text-decoration: none;
+  color: var(--texto);
+  font-weight: 600;
+  font-size: .88rem;
+  padding: .45rem .85rem;
+  border-radius: 8px;
+  transition: background .2s, color .2s;
+  white-space: nowrap;
+}
+.navbar-links a:hover  { background: var(--verde-claro); color: var(--verde-escuro); }
+.navbar-links a.active { background: var(--verde-nav);   color: #fff; }
+
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: .4rem;
+  color: var(--verde-escuro);
+}
+@media (max-width: 680px) {
+  .navbar-toggle { display: block; }
+  .navbar-links {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--branco);
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+    border-bottom: 2px solid var(--verde-claro);
+  }
+  .navbar-links.open { display: flex; }
+  .navbar-links a { width: 100%; }
+}
+
+/* ════════════════════════════
+   PAGE HEADER
+════════════════════════════ */
+.page-header {
+  position: relative;
+  background: linear-gradient(130deg, #7ab83e 0%, var(--verde-claro) 100%);
+  padding: 1.6rem 2rem 3.2rem;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+  pointer-events: none;
+}
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0;
+  width: 100%; height: 44px;
+  background: var(--fundo);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+.page-header-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+}
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.22);
+  color: #fff;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background .2s;
+}
+.btn-back:hover { background: rgba(255,255,255,.38); color: #fff; }
+
+.page-header-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 4vw, 1.65rem);
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0,0,0,.14);
+  line-height: 1.2;
+}
+.page-header-text p {
+  color: rgba(255,255,255,.82);
+  font-size: .82rem;
+  font-weight: 500;
+  margin-top: .2rem;
+}
+
+/* ════════════════════════════
+   CARD DO FORMULÁRIO
+════════════════════════════ */
+.form-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.2rem 3rem;
+}
+
+.form-card {
+  background: var(--branco);
+  border-radius: 20px;
+  box-shadow: 0 6px 32px var(--sombra);
+  padding: 2.2rem 2.4rem;
+  animation: slideUp .35s ease both;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* Título de seção dentro do card */
+.form-section {
+  font-family: 'Playfair Display', serif;
+  font-size: .92rem;
+  color: var(--marrom);
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin: 1.6rem 0 1rem;
+}
+.form-section:first-child { margin-top: 0; }
+.form-section::after {
+  content: '';
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(to right, var(--verde-claro), transparent);
+  border-radius: 2px;
+}
+
+/* ── Grid de 2 colunas ── */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 520px) {
+  .form-row  { grid-template-columns: 1fr; }
+  .form-card { padding: 1.6rem 1.2rem; }
+}
+
+/* ── Grupo de campo ── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: .36rem;
+  margin-bottom: 1rem;
+}
+.form-group:last-child { margin-bottom: 0; }
+
+/* ── Label ── */
+.form-group label {
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--texto-suave);
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+
+/* ── Inputs / Select / Textarea ── */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: .65rem .95rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: .92rem;
+  font-weight: 500;
+  color: var(--texto);
+  background: #fdfaf6;
+  border: 1.8px solid var(--borda);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+  border-color: var(--verde-claro);
+  background: #fefcf9;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--verde-medio);
+  background: var(--branco);
+  box-shadow: 0 0 0 3.5px var(--sombra-foco);
+}
+input::placeholder, textarea::placeholder {
+  color: #c5b5a5;
+  font-weight: 400;
+}
+
+/* Select — seta customizada */
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238fbd5a' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right .8rem center;
+  padding-right: 2.4rem;
+  cursor: pointer;
+}
+
+/* Textarea */
+.form-group textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* Campo inválido */
+.form-group input.is-invalid,
+.form-group select.is-invalid,
+.form-group textarea.is-invalid {
+  border-color: var(--erro);
+  box-shadow: 0 0 0 3px rgba(192,57,43,.15);
+}
+.field-error {
+  font-size: .75rem;
+  color: var(--erro);
+  font-weight: 600;
+}
+
+/* Alertas de feedback */
+.alert {
+  padding: .75rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: .86rem;
+  margin-bottom: 1.2rem;
+}
+.alert-success { background: #e8f5e9; border-left: 4px solid #2e7d32; color: #2e7d32; }
+.alert-error   { background: #fdecea; border-left: 4px solid var(--erro); color: var(--erro); }
+
+/* ════════════════════════════
+   BOTÕES
+════════════════════════════ */
+.form-actions {
+  display: flex;
+  gap: .75rem;
+  justify-content: flex-end;
+  margin-top: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .65rem 1.5rem;
+  border-radius: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-size: .88rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: background .2s, transform .18s, box-shadow .2s, border-color .2s;
+}
+
+/* Primário — Salvar */
+.btn-primary {
+  background: var(--verde-escuro);
+  color: #fff;
+  box-shadow: 0 3px 12px rgba(94,143,48,.3);
+}
+.btn-primary:hover {
+  background: #4a7424;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(94,143,48,.35);
+  color: #fff;
+}
+
+/* Secundário — Cancelar */
+.btn-secondary {
+  background: transparent;
+  color: var(--marrom);
+  border: 1.8px solid var(--borda);
+}
+.btn-secondary:hover {
+  background: var(--marrom-palha);
+  border-color: var(--marrom-claro);
+  color: var(--marrom);
+  transform: translateY(-2px);
+}
+
+/* Perigo — Excluir */
+.btn-danger {
+  background: transparent;
+  color: var(--erro);
+  border: 1.8px solid #f5c6c2;
+}
+.btn-danger:hover {
+  background: #fdecea;
+  border-color: var(--erro);
+  color: var(--erro);
+  transform: translateY(-2px);
+}
+
+.btn:active { transform: translateY(0); }

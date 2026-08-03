@@ -1,0 +1,60 @@
+<!DOCTY<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acesso ao Sistema — PetWeb</title>
+  <link rel="stylesheet" href="/css/login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+
+    <div class="login-card">
+
+        <!-- Topo verde -->
+        <div class="card-top">
+          <div class="logo-area">
+    
+            <!-- ESPAÇO PARA LOGO -->
+            <!-- Troque por: <img src="/imagens/logo.png" class="logo-placeholder" alt="Logo PetWeb"> -->
+            <div class="logo-placeholder">
+                <img width="130" height="80" alt="Logo" src="https://i.pinimg.com/1200x/f8/f2/8a/f8f28a7e88a10a81cc3120822eaa8425.jpg">
+                PetWeb
+            </div>
+    
+            <h1>Acesso ao Sistema</h1>
+            <p>Bem-vindo ao PetWeb</p>
+          </div>
+        </div>
+    
+        <!-- Corpo -->
+        <div class="card-body">
+          <form th:action="@{/login}" method="post">
+    
+            <div class="field">
+              <label for="username">Usuário</label>
+              <input type="text" id="username" name="username" placeholder="Seu login">
+            </div>
+    
+            <div class="field">
+              <label for="password">Senha</label>
+              <input type="password" id="password" name="password" placeholder="••••••••">
+            </div>
+    
+            <button class="btn-submit" type="submit">Entrar</button>
+    
+          </form>
+    
+          <p class="card-footer-link">
+            Não possui cadastro? <a href="/usuarios/criar">Crie sua conta</a>
+          </p>
+    
+          <p class="msg-error"  th:if="${param.error}">Login inválido. Verifique suas credenciais.</p>
+          <p class="msg-logout" th:if="${param.logout}">Logout efetuado com sucesso.</p>
+        </div>
+    
+      </div>
+    
+    </body>
+    </html> 

@@ -1,0 +1,232 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --verde-claro:  #b8d98d;
+  --verde-medio:  #8fbd5a;
+  --verde-escuro: #5e8f30;
+  --marrom:       #7b4f2e;
+  --marrom-claro: #c9956a;
+  --marrom-palha: #f5ede0;
+  --fundo:        #f7f4ee;
+  --branco:       #ffffff;
+  --texto:        #3a2e22;
+  --texto-suave:  #7a6555;
+  --borda:        #ddd3c5;
+  --sombra:       rgba(75, 50, 20, 0.13);
+  --sombra-foco:  rgba(143, 189, 90, 0.28);
+  --erro:         #c0392b;
+  --sucesso:      #2e7d32;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--fundo);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Círculos decorativos de fundo */
+body::before {
+  content: '';
+  position: fixed;
+  top: -100px; right: -100px;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,217,141,.35) 0%, transparent 70%);
+  pointer-events: none;
+}
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -80px; left: -80px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(123,79,46,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Card principal */
+.login-card {
+  background: var(--branco);
+  border-radius: 24px;
+  box-shadow: 0 8px 48px var(--sombra);
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  animation: slideUp .4s ease both;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Topo verde do card */
+.card-top {
+  background: linear-gradient(135deg, #5e8f30 0%, var(--verde-claro) 100%);
+  padding: 2.2rem 2.4rem 2.8rem;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+.card-top::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0;
+  width: 100%; height: 40px;
+  background: var(--branco);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+.card-top::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.10);
+  pointer-events: none;
+}
+
+/* ── ESPAÇO PARA LOGO ── */
+.logo-area {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .7rem;
+}
+
+.logo-placeholder {
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.18);
+  border: 2.5px dashed rgba(255,255,255,.65);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.85);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  gap: .3rem;
+  cursor: pointer;
+  transition: background .2s;
+  overflow: hidden;
+}
+/* Para usar com imagem real, troque o div por:
+   <img src="sua-logo.png" class="logo-placeholder" alt="Logo"> */
+.logo-placeholder:hover { background: rgba(255,255,255,.28); }
+
+.card-top h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0,0,0,.14);
+  position: relative;
+  z-index: 1;
+}
+.card-top p {
+  color: rgba(255,255,255,.82);
+  font-size: .82rem;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+  margin-top: .2rem;
+}
+
+/* Corpo do card */
+.card-body {
+  padding: 1.8rem 2.4rem 2.4rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: .38rem;
+  margin-bottom: 1.1rem;
+}
+.field label {
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--texto-suave);
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+.field input {
+  padding: .68rem 1rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: .93rem;
+  font-weight: 500;
+  color: var(--texto);
+  background: #fdfaf6;
+  border: 1.8px solid var(--borda);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.field input:hover { border-color: var(--verde-claro); background: #fefcf9; }
+.field input:focus {
+  border-color: var(--verde-medio);
+  background: var(--branco);
+  box-shadow: 0 0 0 3.5px var(--sombra-foco);
+}
+.field input::placeholder { color: #c5b5a5; font-weight: 400; }
+
+.btn-submit {
+  width: 100%;
+  margin-top: .5rem;
+  padding: .75rem;
+  background: var(--verde-escuro);
+  color: #fff;
+  font-family: 'Nunito', sans-serif;
+  font-size: .92rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 3px 14px rgba(94,143,48,.32);
+  transition: background .2s, transform .15s, box-shadow .2s;
+}
+.btn-submit:hover {
+  background: #4a7424;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(94,143,48,.38);
+}
+.btn-submit:active { transform: translateY(0); }
+
+.card-footer-link {
+  text-align: center;
+  margin-top: 1.2rem;
+  font-size: .84rem;
+  color: var(--texto-suave);
+}
+.card-footer-link a {
+  color: var(--verde-escuro);
+  font-weight: 700;
+  text-decoration: none;
+  transition: color .2s;
+}
+.card-footer-link a:hover { color: var(--marrom); }
+
+.msg-error, .msg-logout {
+  margin-top: 1rem;
+  padding: .7rem 1rem;
+  border-radius: 8px;
+  font-size: .84rem;
+  font-weight: 700;
+  text-align: center;
+}
+.msg-error  { background: #fdecea; border-left: 3px solid var(--erro);    color: var(--erro); }
+.msg-logout { background: #e8f5e9; border-left: 3px solid var(--sucesso); color: var(--sucesso); }
