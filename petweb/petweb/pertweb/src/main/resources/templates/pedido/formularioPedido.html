@@ -1,41 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Pedido — PetWeb</title>
+  <link rel="stylesheet" href="/css/formulario.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <h1>Formulario de Pedidos</h1>
-    <datalist id="listaClientes">
-        <option th:each="cliente : ${clientes}"
-                th:value="${cliente.idCliente + ' - ' + cliente.nomeCliente}">
-        </option>
-    </datalist>
 
+  <nav class="petweb-navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">
+        <img width="130" height="80" alt="Logo" src="https://i.pinimg.com/1200x/f8/f2/8a/f8f28a7e88a10a81cc3120822eaa8425.jpg">
+        PetWeb
+      </a>
+      <button class="navbar-toggle" onclick="document.querySelector('.navbar-links').classList.toggle('open')" aria-label="Menu">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+        </svg>
+      </button>
+      <ul class="navbar-links">
+        <li><a href="/">Início</a></li>
+        <li><a href="/clientes/listar">Clientes</a></li>
+        <li><a href="/animais/listar">Animais</a></li>
+        <li><a href="/veterinarios/listar">Veterinários</a></li>
+        <li><a href="/consultas/listar">Consultas</a></li>
+        <li><a href="/produtos/listar">Produtos</a></li>
+        <li><a href="/pedidos/listar" class="active">Pedidos</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <datalist id="listaProdutos">
-        <option th:each="produto : ${produtos}"
-                th:value="${produto.idProduto + ' - ' + produto.descricaoProduto}"
-                th:attr="data-preco=${produto.valorProduto}">
-        </option>
-    </datalist>
+  <header class="page-header">
+    <div class="page-header-inner">
+      <a href="/pedidos/listar" class="btn-back" title="Voltar">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path d="M19 12H5M12 5l-7 7 7 7"/>
+        </svg>
+      </a>
+      <div class="page-header-text">
+        <h1>Formulário de Pedido</h1>
+        <p>Monte o pedido informando cliente e produtos</p>
+      </div>
+    </div>
+  </header>
 
-    <p>Identificação do cliente</p>
-    <label for="cliente">Cliente</label>
-    <input 
-        list="listaClientes"
-        id="cliente"
-        type="text"
-        placeholder="Digite o nome ou o código fo cliente">
-        
-    <p>II. Acionar produto ao Pedido</p>
-    <label for="produto">Produto</label>
-    <input 
-        list="listaProdutos"
-        id="produto"
-        type="text"
-        placeholder="Digite o produto">
-        
+  <datalist id="listaClientes">
+    <option th:each="cliente : ${clientes}"
+            th:value="${cliente.idCliente + ' - ' + cliente.nomeCliente}">
+    </option>
+  </datalist>
+
+  <datalist id="listaProdutos">
+    <option th:each="produto : ${produtos}"
+            th:value="${produto.idProduto + ' - ' + produto.descricaoProduto}"
+            th:attr="data-preco=${produto.valorProduto}">
+    </option>
+  </datalist>
+
+  <div class="form-wrapper">
+    <div class="form-card">
+
+      <p class="form-section">I. Identificação do Cliente</p>
+
+      <div class="form-group">
+        <label for="cliente">Cliente</label>
+        <input
+          list="listaClientes"
+          id="cliente"
+          type="text"
+          placeholder="Digite o nome ou o código do cliente">
+      </div>
+
+      <p class="form-section">II. Adicionar Produto ao Pedido</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="produto">Produto</label>
+          <input
+            list="listaProdutos"
+            id="produto"
+            type="text"
+            placeholder="Digite o produto">
+        </div>
+        <div class="form-group">
+          <label for="quantidade">Quantidade</label>
+          <input type="number" id="quantidade" placeholder="0" min="1">
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" onclick="adicionarItem()">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          Adicionar Item
+        </button>
+      </div>
+
+      <p class="form-section">Itens do Pedido</p>
+
+      <div class="table-responsive">
+        <table class="petweb-table" id="tabela-itens-wrapper">
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Quantidade</th>
+              <th>Preço unitário</th>
+              <th>Subtotal</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-itens">
+            <tr id="empty-row">
+              <td colspan="5" class="table-empty">Nenhum produto adicionado ao pedido</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="form-actions" style="justify-content: space-between; align-items: center;">
+        <span class="list-footer-info">
+          Total do Pedido: R$ <span id="totalPedido">0,00</span>
+        </span>
+        <button type="button" class="btn btn-primary" onclick="salvarPedido()">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path d="M5 13l4 4L19 7"/>
+          </svg>
+          Confirmar e Salvar Pedido
+        </button>
+      </div>
+
+    </div>
+  </div>
+
 </body>
 </html>

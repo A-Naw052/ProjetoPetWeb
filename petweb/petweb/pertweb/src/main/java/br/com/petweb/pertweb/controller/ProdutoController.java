@@ -31,7 +31,7 @@ public class ProdutoController {
     @GetMapping("/listar")
     public String listar(Model model){
         List<Produto> produtos = produtoService.findAll();
-        model.addAttribute("produto", produtos);
+        model.addAttribute("produtos", produtos);
         return "produto/listarProduto";
     }
 

@@ -24,7 +24,7 @@ public class Produto {
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private Integer idProduto;
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false)
     private Double valorProduto;
 
     @Column(nullable = false, length = 30)
