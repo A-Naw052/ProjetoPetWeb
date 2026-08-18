@@ -1,0 +1,209 @@
+/* ══════════════════════════════════════════
+   Grid de produtos (cards) — mantém navbar,
+   page-header e paleta originais do PetWeb.
+   Cores herdadas: acento teal (#2AA9A0 aprox.)
+   ajuste as variáveis abaixo se o lista.css
+   já definir outros tons.
+   ══════════════════════════════════════════ */
+   :root{
+    --pw-accent: #2AA9A0;
+    --pw-accent-dark: #1f8079;
+    --pw-text: #2b2f33;
+    --pw-muted: #6b7580;
+    --pw-border: #e7e9ec;
+    --pw-bg-card: #ffffff;
+    --pw-bg-page: #f7f8f9;
+    --pw-danger: #d9534f;
+  }
+  
+  .produtos-shell{
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px 56px;
+    background: var(--pw-bg-page);
+  }
+  
+  /* ---------- Sidebar ---------- */
+  .produtos-sidebar h6{
+    font-size: .72rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--pw-muted);
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .produtos-sidebar select{
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--pw-border);
+    border-radius: 8px;
+    font-size: .9rem;
+    color: var(--pw-text);
+    background: #fff;
+    margin-bottom: 28px;
+  }
+  .produtos-sidebar .filtro-marcas{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .produtos-sidebar .filtro-marcas li{
+    margin-bottom: 12px;
+  }
+  .produtos-sidebar .filtro-marcas a{
+    color: var(--pw-text);
+    text-decoration: none;
+    font-size: .92rem;
+    cursor: pointer;
+  }
+  .produtos-sidebar .filtro-marcas a:hover,
+  .produtos-sidebar .filtro-marcas a.active{
+    color: var(--pw-accent-dark);
+    font-weight: 600;
+  }
+  
+  /* ---------- Toolbar acima do grid ---------- */
+  .produtos-toolbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .produtos-toolbar .search-box{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    border: 1px solid var(--pw-border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    min-width: 240px;
+  }
+  .produtos-toolbar .search-box svg{ color: var(--pw-muted); flex-shrink: 0; }
+  .produtos-toolbar .search-box input{
+    border: none;
+    outline: none;
+    font-size: .9rem;
+    width: 100%;
+  }
+  
+  /* ---------- Grid de cards ---------- */
+  .produtos-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 22px;
+  }
+  
+  .produto-card{
+    background: var(--pw-bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--pw-border);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .15s ease, transform .15s ease;
+  }
+  .produto-card:hover{
+    box-shadow: 0 8px 20px rgba(20,30,40,.08);
+    transform: translateY(-2px);
+  }
+  
+  .produto-thumb{
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 2.6rem;
+    font-weight: 600;
+    color: rgba(0,0,0,.32);
+    position: relative;
+  }
+  /* paleta rotativa para as thumbs, ecoando o acento do PetWeb */
+  .produto-thumb.c0{ background: #eef1f2; }
+  .produto-thumb.c1{ background: #f1e9e2; }
+  .produto-thumb.c2{ background: #e6efe9; }
+  .produto-thumb.c3{ background: #f3ecd9; }
+  .produto-thumb.c4{ background: #e7edf2; }
+  
+  .produto-info{
+    padding: 14px 14px 12px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .produto-desc{
+    font-size: .93rem;
+    font-weight: 600;
+    color: var(--pw-text);
+    margin: 0 0 2px;
+    line-height: 1.25;
+  }
+  .produto-marca{
+    font-size: .76rem;
+    color: var(--pw-muted);
+    margin: 0 0 8px;
+  }
+  .produto-valor{
+    font-size: .98rem;
+    font-weight: 700;
+    color: var(--pw-accent-dark);
+    margin: 0 0 12px;
+  }
+  
+  .produto-actions{
+    display: flex;
+    gap: 8px;
+    padding: 0 14px 14px;
+  }
+  .produto-actions .btn{
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: .78rem;
+    padding: 7px 8px;
+    border-radius: 7px;
+    text-decoration: none;
+    border: 1px solid transparent;
+  }
+  .produto-actions .btn-secondary{
+    background: #f0f2f3;
+    color: var(--pw-text);
+  }
+  .produto-actions .btn-secondary:hover{ background: #e5e8ea; }
+  .produto-actions .btn-danger{
+    background: #fdecea;
+    color: var(--pw-danger);
+  }
+  .produto-actions .btn-danger:hover{ background: #fbdedb; }
+  
+  .produtos-empty{
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--pw-muted);
+  }
+  .produtos-empty svg{ margin-bottom: 10px; }
+  
+  .produtos-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid var(--pw-border);
+    font-size: .82rem;
+    color: var(--pw-muted);
+  }
+  
+  @media (max-width: 720px){
+    .produtos-shell{ grid-template-columns: 1fr; }
+    .produtos-sidebar{ order: 2; }
+  }

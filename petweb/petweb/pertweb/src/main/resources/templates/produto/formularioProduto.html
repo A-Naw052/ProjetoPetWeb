@@ -10,26 +10,36 @@
 </head>
 <body>
 
+  <!-- ══ NAVBAR ══ -->
   <nav class="petweb-navbar">
     <div class="navbar-inner">
+
       <a href="/" class="navbar-brand">
         <img width="130" height="80" alt="Logo" src="https://i.pinimg.com/1200x/f8/f2/8a/f8f28a7e88a10a81cc3120822eaa8425.jpg">
         PetWeb
       </a>
-      <button class="navbar-toggle" onclick="document.querySelector('.navbar-links').classList.toggle('open')" aria-label="Menu">
+
+      <button class="navbar-toggle"
+              onclick="document.querySelector('.navbar-links').classList.toggle('open')"
+              aria-label="Menu">
         <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M3 6h18M3 12h18M3 18h18"/>
         </svg>
       </button>
+
       <ul class="navbar-links">
-        <li><a href="/">Início</a></li>
+        <li><a href="/home" class="active">Início</a></li>
         <li><a href="/clientes/listar">Clientes</a></li>
         <li><a href="/animais/listar">Animais</a></li>
         <li><a href="/veterinarios/listar">Veterinários</a></li>
         <li><a href="/consultas/listar">Consultas</a></li>
-        <li><a href="/produtos/listar" class="active">Produtos</a></li>
+        <li><a href="/produtos/listar">Produto</a></li>
+        <li><a href="/pedidos/listar">Pedido</a></li>
+        <li><a href="/logout" class="navbar-logout">Sair</a></li>
       </ul>
+
     </div>
+  </nav>
   </nav>
 
   <header class="page-header">
