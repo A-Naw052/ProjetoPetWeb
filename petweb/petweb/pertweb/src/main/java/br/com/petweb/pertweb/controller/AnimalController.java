@@ -47,7 +47,7 @@ public class AnimalController {
                     animal.setTipoFotoAnimal(animalExistente.getTipoFotoAnimal());
                 }
             }
-            animalService.save(animal);
+       
         }catch (Exception e){
             e.printStackTrace();
         }    
