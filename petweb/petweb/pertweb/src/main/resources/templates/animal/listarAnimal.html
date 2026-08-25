@@ -74,6 +74,7 @@
         <table class="petweb-table" id="tabela">
           <thead>
             <tr>
+              <th>Foto</th>
               <th>Nome</th>
               <th>Raça</th>
               <th>Porte</th>
@@ -84,6 +85,11 @@
           </thead>
           <tbody>
             <tr th:each="animal : ${animais}">
+              <td>
+                <img th:if="${animal.fotoAnimal != null}"
+                     th:src="@{/animais/foto/{id}(id=${animal.idAnimal})}"
+                     width="70" height="80">
+               </td>
               <td th:text="${animal.nomeAnimal}"></td>
               <td th:text="${animal.racaAnimal}"></td>
               <td th:text="${animal.porteAnimal}"></td>

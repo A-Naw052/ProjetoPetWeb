@@ -58,10 +58,15 @@
 
   <div class="form-wrapper">
     <div class="form-card">
-      <form th:action="@{/animais/salvar}" method="post" th:object="${animal}">
+      <form th:action="@{/animais/salvar}" method="post" th:object="${animal}" enctype="multipart/form-data">
         <input type="hidden" name="idAnimal" th:field="*{idAnimal}">
 
         <p class="form-section">Identificação</p>
+
+        <div class="form-field">
+          <label for="fotoAnimal">Foto: *Tamanho máximo: 2Mb</label>
+          <input type="file" id="fotoAnimal" name="foto" accept="image/*">
+        </div>
 
         <div class="form-row">
           <div class="form-group">
