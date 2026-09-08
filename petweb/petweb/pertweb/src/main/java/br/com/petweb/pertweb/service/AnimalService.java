@@ -34,4 +34,10 @@ public class AnimalService {
     public Animal findById(Integer id){
         return animalRepository.findById(id).orElse(null);
     }
+
+    
+    //Consulta usando o DTO
+    public List<ClienteAnimalDTO> buscarClienteAnimal(){
+        return animalRepository.buscarClienteAnimal();
+    }
 }
