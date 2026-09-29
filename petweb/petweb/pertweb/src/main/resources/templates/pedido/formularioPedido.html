@@ -55,15 +55,6 @@
     </div>
   </header>
 
-  <label for="produto">Produto</label>
-  <select id="produto" class="form-control">
-    <option value="" disabled selected>Selecione um produto...</option>
-    <option th:each="produto : ${produtos}"
-            th:value="${produto.idProduto}"
-            th:data-preco="${produto.valorProduto}"
-            th:text="${produto.idProduto + ' - ' + produto.descricaoProduto}">
-    </option>
-  </select>
 
   <div class="form-wrapper">
     <div class="form-card">
@@ -85,12 +76,15 @@
 
       <div class="form-row">
         <div class="form-group">
-          <label for="produto">Produto</label>
-          <input
-            list="listaProdutos"
-            id="produto"
-            type="text"
-            placeholder="Digite o produto">
+            <label for="produto">Produto</label>
+            <select id="produto" class="form-control">
+              <option value="" disabled selected>Selecione um produto...</option>
+              <option th:each="produto : ${produtos}"
+                      th:value="${produto.idProduto}"
+                      th:data-preco="${produto.valorProduto}"
+                      th:text="${produto.idProduto + ' - ' + produto.descricaoProduto}">
+              </option>
+            </select>
         </div>
         <div class="form-group">
           <label for="quantidade">Quantidade</label>

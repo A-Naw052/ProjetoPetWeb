@@ -23,7 +23,7 @@ public class ItemDoPedido {
     
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
-    private Integer IdItem;
+    private Integer idItem;
 
     @Column(nullable = false, length = 10)
     private Integer quantidade;

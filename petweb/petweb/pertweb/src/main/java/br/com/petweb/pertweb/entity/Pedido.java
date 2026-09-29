@@ -17,7 +17,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import jakarta.persistence.Table;
 
+@Table(name = "pedido")
 @Entity
 @Setter
 @Getter
@@ -26,7 +28,7 @@ import lombok.Setter;
 public class Pedido {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy =  GenerationType.AUTO)
     private Integer idPedido;
 
     @Column(nullable = false)
