@@ -19,6 +19,7 @@ import br.com.petweb.pertweb.entity.Animal;
 import br.com.petweb.pertweb.entity.Cliente;
 import br.com.petweb.pertweb.service.AnimalService;
 import br.com.petweb.pertweb.service.ClienteService;
+import br.com.petweb.pertweb.dto.ClienteAnimalDTO;
 
 
 @Controller

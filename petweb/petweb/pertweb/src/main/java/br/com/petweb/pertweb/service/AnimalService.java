@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.petweb.pertweb.entity.Animal;
 import br.com.petweb.pertweb.repository.AnimalRepository;
+import br.com.petweb.pertweb.dto.ClienteAnimalDTO;
 
 @Service
 public class AnimalService {

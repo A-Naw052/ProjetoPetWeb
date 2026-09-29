@@ -79,11 +79,25 @@
         <div class="form-row">
           <div class="form-group">
             <label for="loginUsuario">Login *</label>
-            <input type="text" id="loginUsuario" th:field="*{loginUsuario}" placeholder="Seu nome de usuário">
+            <input type="text" id="loginUsuario" th:field="*{loginUsuario}" placeholder="Seu nome de usuário" required>
           </div>
           <div class="form-group">
             <label for="senhaUsuario">Senha *</label>
-            <input type="password" id="senhaUsuario" th:field="*{senhaUsuario}" placeholder="••••••••">
+            <input type="password" id="senhaUsuario" th:field="*{senhaUsuario}" placeholder="••••••••" required>
+            
+            <!-- Indicador visual de força -->
+            <div class="password-strength-meter">
+              <div id="strengthBar" class="password-strength-bar"></div>
+            </div>
+
+            <!-- Regras de validação -->
+            <ul class="password-rules">
+              <li id="rule-length" class="invalid">No mínimo 8 caracteres</li>
+              <li id="rule-uppercase" class="invalid">Ao menos uma letra maiúscula</li>
+              <li id="rule-lowercase" class="invalid">Ao menos uma letra minúscula</li>
+              <li id="rule-number" class="invalid">Ao menos um número</li>
+              <li id="rule-special" class="invalid">Ao menos um caractere especial (!@#$%...)</li>
+            </ul>
           </div>
         </div>
 
@@ -105,6 +119,69 @@
       </form>
     </div>
   </div>
+
+  <script>
+    const passwordInput = document.getElementById('senhaUsuario');
+    const strengthBar = document.getElementById('strengthBar');
+    const formUsuario = document.getElementById('formUsuario');
+
+    const rules = {
+      length: { element: document.getElementById('rule-length'), regex: /.{8,}/ },
+      uppercase: { element: document.getElementById('rule-uppercase'), regex: /[A-Z]/ },
+      lowercase: { element: document.getElementById('rule-lowercase'), regex: /[a-z]/ },
+      number: { element: document.getElementById('rule-number'), regex: /[0-9]/ },
+      special: { element: document.getElementById('rule-special'), regex: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/ }
+    };
+
+    passwordInput.addEventListener('input', function () {
+      const val = passwordInput.value;
+      let passedRulesCount = 0;
+
+      // Verifica cada uma das regras
+      for (const key in rules) {
+        const isPassed = rules[key].regex.test(val);
+        if (isPassed) {
+          rules[key].element.classList.remove('invalid');
+          rules[key].element.classList.add('valid');
+          passedRulesCount++;
+        } else {
+          rules[key].element.classList.remove('valid');
+          rules[key].element.classList.add('invalid');
+        }
+      }
+
+      // Atualiza a barra de força com base na quantidade de regras atendidas
+      let percentage = (passedRulesCount / 5) * 100;
+      strengthBar.style.width = percentage + '%';
+
+      if (passedRulesCount <= 2) {
+        strengthBar.style.backgroundColor = '#dc3545'; // Vermelho (Fraca)
+      } else if (passedRulesCount <= 4) {
+        strengthBar.style.backgroundColor = '#ffc107'; // Amarelo (Média)
+      } else {
+        strengthBar.style.backgroundColor = '#198754'; // Verde (Forte)
+      }
+    });
+
+    // Impede o envio do formulário se a senha não for suficientemente forte
+    formUsuario.addEventListener('submit', function (e) {
+      const val = passwordInput.value;
+      let allPassed = true;
+
+      for (const key in rules) {
+        if (!rules[key].regex.test(val)) {
+          allPassed = false;
+          break;
+        }
+      }
+
+      if (!allPassed) {
+        e.preventDefault();
+        alert('Por favor, crie uma senha forte atendendo a todos os requisitos solicitados!');
+      }
+    });
+  </script>
+
 
 </body>
 </html>

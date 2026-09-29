@@ -11,7 +11,7 @@ import br.com.petweb.pertweb.entity.Animal;
 public interface AnimalRepository extends JpaRepository <Animal, Integer> {
 
     @Query("""
-            SELECT  new  br.com.petweb.petweb.dto.ClienteAnimalDTO(
+            SELECT  new  br.com.petweb.pertweb.dto.ClienteAnimalDTO(
                 a.cliente.nomeCliente,
                 a.cliente.telefoneCliente,
                 a.nomeAnimal

@@ -397,3 +397,46 @@ input::placeholder, textarea::placeholder {
 }
 
 .btn:active { transform: translateY(0); }
+
+/* Estilos para a barra de força e requisitos da senha */
+.password-strength-meter {
+  height: 6px;
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 3px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.password-strength-bar {
+  height: 100%;
+  width: 0%;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.password-rules {
+  font-size: 0.85rem;
+  margin-top: 8px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.password-rules li {
+  color: #6c757d;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.password-rules li.valid {
+  color: #198754;
+  font-weight: 500;
+}
+
+.password-rules li.valid::before {
+  content: "✓";
+}
+
+.password-rules li.invalid::before {
+  content: "•";
+}

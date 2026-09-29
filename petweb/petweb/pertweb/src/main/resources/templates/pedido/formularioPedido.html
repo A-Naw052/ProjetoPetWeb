@@ -55,18 +55,15 @@
     </div>
   </header>
 
-  <datalist id="listaClientes">
-    <option th:each="cliente : ${clientes}"
-            th:value="${cliente.idCliente + ' - ' + cliente.nomeCliente}">
-    </option>
-  </datalist>
-
-  <datalist id="listaProdutos">
+  <label for="produto">Produto</label>
+  <select id="produto" class="form-control">
+    <option value="" disabled selected>Selecione um produto...</option>
     <option th:each="produto : ${produtos}"
-            th:value="${produto.idProduto + ' - ' + produto.descricaoProduto}"
-            th:attr="data-preco=${produto.valorProduto}">
+            th:value="${produto.idProduto}"
+            th:data-preco="${produto.valorProduto}"
+            th:text="${produto.idProduto + ' - ' + produto.descricaoProduto}">
     </option>
-  </datalist>
+  </select>
 
   <div class="form-wrapper">
     <div class="form-card">
@@ -75,11 +72,13 @@
 
       <div class="form-group">
         <label for="cliente">Cliente</label>
-        <input
-          list="listaClientes"
-          id="cliente"
-          type="text"
-          placeholder="Digite o nome ou o código do cliente">
+        <select id="cliente" class="form-control">
+          <option value="" disabled selected>Selecione um cliente...</option>
+          <option th:each="cliente : ${clientes}"
+                  th:value="${cliente.idCliente}"
+                  th:text="${cliente.idCliente + ' - ' + cliente.nomeCliente}">
+          </option>
+        </select>
       </div>
 
       <p class="form-section">II. Adicionar Produto ao Pedido</p>
@@ -273,39 +272,45 @@
   }
 
   function salvarPedido() {
-      let clienteInput = document.getElementById("cliente").value;
+    let clienteInput = document.getElementById("cliente").value;
 
-      if (!clienteInput) {
-          alert("Selecione um cliente antes de salvar!");
-          return;
-      }
+    if (!clienteInput) {
+        alert("Selecione um cliente antes de salvar!");
+        return;
+    }
 
-      if (itens.length === 0) {
-          alert("Adicione ao menos um produto ao pedido!");
-          return;
-      }
+    if (itens.length === 0) {
+        alert("Adicione ao menos um produto ao pedido!");
+        return;
+    }
 
-      let clienteId = clienteInput.split(" - ")[0];
+    let clienteId = clienteInput.split(" - ")[0];
 
-      let pedido = {
-          cliente: { idCliente: clienteId },
-          itens: itens
-      };
+    let pedido = {
+        cliente: { idCliente: parseInt(clienteId) },
+        itens: itens
+    };
 
-      fetch("/pedidos", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(pedido)
-      })
-      .then(res => res.json())
-      .then(data => {
-          alert("Pedido salvo com sucesso!");
-          location.reload();
-      })
-      .catch(err => {
-          alert("Erro ao salvar o pedido. Tente novamente.");
-          console.error(err);
-      });
+    fetch("/pedidos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(pedido)
+    })
+    .then(async res => {
+        if (!res.ok) {
+            let errorText = await res.text();
+            throw new Error(errorText || "Erro no servidor ao salvar pedido.");
+        }
+        return res.json();
+    })
+    .then(data => {
+        alert("Pedido salvo com sucesso!");
+        window.location.href = "/pedidos/listar";
+    })
+    .catch(err => {
+        alert("Erro ao salvar o pedido. Verifique os dados.");
+        console.error("Erro no envio:", err);
+    });
   }
 </script>
 </html>

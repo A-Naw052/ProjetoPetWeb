@@ -2,6 +2,7 @@ package br.com.petweb.pertweb.entity;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.ArrayList;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -25,13 +26,13 @@ import lombok.Setter;
 public class Pedido {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer idPedido;
 
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false)
     private LocalDate dataPedido;
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false)
     private Double totalPedido;
 
     //Relacionamento com Cliente 
@@ -39,9 +40,10 @@ public class Pedido {
     @JoinColumn(name = "idCliente_fk")
     private Cliente cliente;
 
-    //Relacionamento com Itens 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private List<ItemDoPedido> itens;
+    // Relacionamento com Itens
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemDoPedido> itens = new ArrayList<>();
+
 
     //Metodo para calcular o total
     public Double calcularTotal(){
